@@ -1,0 +1,16 @@
+env:
+  TELEGRAM_TOKEN: ENCRYPTED[7aa0f0c9c88d03ce81e883091992dbc4f06ee1bec5fc74dabf34781601aa751f0b301c73b0d1277c0f8f3bcbe46aff68]
+  GCC_IGNORE_WERROR: 1
+  TZ: "Asia/Jakarta"
+  CIRRUS_CLONE_DEPTH: 10
+container:
+  image: diazaji/debian:kernel
+  cpu: 8
+  memory: 16G
+clang_task:
+  name: Compile Kernel
+  timeout_in: 69m
+  only_if: $CIRRUS_BRANCH == 'kucing-13-beta'
+  script:
+    - wget -qO build.sh https://raw.githubusercontent.com/Diaz1401/build-script/whyred/build.sh
+    - bash build.sh clang beta
