@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause */
 /*
- * Copyright (c) Facebook, Inc.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
  * All rights reserved.
  *
  * This source code is licensed under both the BSD-style license (found in the
@@ -16,8 +16,19 @@
  * decompression.
  */
 
-#include "entropy_common.c"
-#include "fse_decompress.c"
-#include "huf_decompress.c"
-#include "zstd_common.c"
-#include "decompress.c"
+/*
+ * Disable the ASM Huffman implementation because we need to
+ * include all the sources.
+ */
+#define ZSTD_DISABLE_ASM 1
+
+#include "common/debug.c"
+#include "common/entropy_common.c"
+#include "common/error_private.c"
+#include "common/fse_decompress.c"
+#include "common/zstd_common.c"
+#include "decompress/huf_decompress.c"
+#include "decompress/zstd_ddict.c"
+#include "decompress/zstd_decompress.c"
+#include "decompress/zstd_decompress_block.c"
+#include "zstd_decompress_module.c"
