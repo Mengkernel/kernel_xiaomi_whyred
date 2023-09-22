@@ -4455,6 +4455,8 @@ CONFIG_SENSORS_SSC=y
 #
 # KernelSU
 #
+CONFIG_KSU=y
+# CONFIG_KSU_DEBUG is not set
 
 #
 # Firmware Drivers
@@ -4530,7 +4532,7 @@ CONFIG_QUOTACTL=y
 # CONFIG_AUTOFS4_FS is not set
 CONFIG_FUSE_FS=y
 # CONFIG_CUSE is not set
-# CONFIG_OVERLAY_FS is not set
+CONFIG_OVERLAY_FS=y
 
 #
 # Caches
