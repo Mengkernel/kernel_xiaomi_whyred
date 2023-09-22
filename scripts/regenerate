@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+echo "Regenerate defconfig ..."
+mkdir out || exit 0
+make whyred_defconfig CC=clang ARCH=arm64 O=out || exit 0
+mv out/.config arch/arm64/configs/whyred_defconfig || exit 0
+rm -rf out
+echo "Commiting ..."
+git add arch/arm64/configs/whyred_defconfig
+git commit -sm "ARM64: whyred_defconfig: Regenerate"
